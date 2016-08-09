@@ -1,3 +1,4 @@
+package cardgames;
 import java.util.List;
 
 public interface Game {
