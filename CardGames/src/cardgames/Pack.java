@@ -3,15 +3,16 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Deck {
+public class Pack {
 
-	private List<Card> cards;
+	protected List<Card> cards;
 	
-	public Deck(){
+	public Pack(){
 		cards = new ArrayList<>();
 		for(Card.SUIT suit : Card.SUIT.values()){
 			for(Card.VALUE value : Card.VALUE.values()){
-				cards.add(new Card(suit, value));
+				if(!suit.equals(Card.SUIT.JOKER) && !value.equals(Card.VALUE.JOKER))
+					cards.add(new Card(suit, value));
 			}
 		}
 	}

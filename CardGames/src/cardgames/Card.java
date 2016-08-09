@@ -3,11 +3,11 @@ package cardgames;
 public class Card {
 	
 	public static enum VALUE {
-	    ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING 
+	    ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, JOKER
 	}
 	
 	public static enum SUIT {
-	    SPADES, HEARTS, DIAMOND, CLUBS
+	    SPADES, HEARTS, DIAMOND, CLUBS, JOKER
 	}
 	
 	private VALUE faceValue;
