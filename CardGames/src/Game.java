@@ -1,5 +1,6 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Game {
-	public int compare(ArrayList<Hand> hands);
+	public int compare(List<Hand> hands);
+	public void dealCards(List<Hand> hands);
 }
