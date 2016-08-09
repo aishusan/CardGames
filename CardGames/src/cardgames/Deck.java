@@ -1,5 +1,6 @@
 package cardgames;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,10 +9,12 @@ public class Deck {
 	
 	public Deck(){
 		Pack p1 = new Pack();
+		cards= new ArrayList<>();
 		cards.addAll(p1.getCards());
 	}
 	
 	public Deck(int n){
+		cards = new ArrayList<>();
 		for(int i=0;i<n;i++)
 		{
 			Pack p1 = new Pack();

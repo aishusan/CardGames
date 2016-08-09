@@ -140,9 +140,16 @@ public class Poker implements Game{
 		}}
 	}
 
+	public String displayTable()
+	{
+		return tableCards.toString();
+	}
 	@Override
 	public void initGame() {
 		standardDeck = new Deck();
+		tableCards = new ArrayList<>();
+		
+		standardDeck.shuffle();
 		standardDeck.removeCard();
 		tableCards.add(standardDeck.getCard());
 		tableCards.add(standardDeck.getCard());

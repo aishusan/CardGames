@@ -5,6 +5,10 @@ import java.util.List;
 public class Hand {
 	List<Card> cards;
 	
+	public List<Card> getCards() {
+		return cards;
+	}
+
 	public Hand()
 	{
 		cards = new ArrayList<>();
