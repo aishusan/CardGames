@@ -1,5 +1,6 @@
 package cardgames;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Hand {
@@ -18,8 +19,7 @@ public class Hand {
 		this.cards = cards;
 	}
 	
-	public void add(Card c)
-	{
+	public void add(Card c){
 		this.cards.add(c);
 	}
 	
@@ -31,4 +31,24 @@ public class Hand {
 		return new Hand(cardsOfSuit);
 	}
 	
+	public void shuffle(){
+		Collections.shuffle(cards);
+	}
+	
+	public Card showTopCard(){
+		return cards.get(0);
+	}
+	
+	public void removeCard(Card card){
+		for(int i=0; i<cards.size(); i++){
+			if(cards.get(i).equals(card)){
+				cards.remove(i);
+				return;
+			}
+		}
+	}
+
+	public boolean containsCard(Card card){
+		return cards.contains(card);
+	}
 }

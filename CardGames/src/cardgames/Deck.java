@@ -37,4 +37,13 @@ public class Deck {
 		removeCard();
 		return temp;
 	}
+	
+	public List<Card> getNCards(int n){
+		ArrayList<Card> nCards = new ArrayList<>();
+		for(int i=0; i<n; i++){
+			nCards.add(getCard());
+		}
+		return nCards;
+	}
+	
 }

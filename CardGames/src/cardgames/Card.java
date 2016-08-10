@@ -9,7 +9,7 @@ public class Card {
 	}
 	
 	public static enum SUIT {
-	    SPADES, HEARTS, DIAMOND, CLUBS, JOKER
+		DIAMOND, SPADES, HEARTS, CLUBS, JOKER
 	}
 	
 	private VALUE faceValue;
@@ -42,5 +42,11 @@ public class Card {
 
 	public SUIT getSuit() {
 		return suit;
+	}
+	
+	@Override
+	public boolean equals(Object thatObject){
+		Card that = (Card)thatObject;
+		return (this.getFaceValue().equals(that.getFaceValue()) && this.getSuit().equals(that.getSuit())); 
 	}
 }
