@@ -81,77 +81,320 @@ public class Poker implements Game{
 		Hand myHand = new Hand(bestHandCards);
 		return myHand;
 	}
-	
+
 	
 	private Hand checkPair(Hand hand) {
+		List<Card> myHandCards = new ArrayList<>();
+		myHandCards.addAll(tableCards);
+		myHandCards.addAll(hand.getCards());
 		
-		return null;
+		Collections.sort(myHandCards, Card.valueComparator);
+		
+		ArrayList<Card> bestHandCards = new ArrayList<>();
+		
+		
+		for(int i=0;i<myHandCards.size()-1;i++)
+		{
+			if(myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+1).getFaceValue())){
+				bestHandCards.add(myHandCards.get(i));
+				bestHandCards.add(myHandCards.get(i+1));
+				myHandCards.remove(i);
+				myHandCards.remove(i);
+				break;
+			}
+		}
+		
+		if(bestHandCards.size()==0){
+			return null;	
+		}
+		
+		Collections.sort(myHandCards,Card.valueComparator);
+		myHandCards.remove(4);
+		myHandCards.remove(3);
+		
+		bestHandCards.addAll(myHandCards);
+		
+		Hand myHand = new Hand(bestHandCards);
+		return myHand;
 	}
-
-
 
 	private Hand checkTwoPair(Hand hand) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Card> myHandCards = new ArrayList<>();
+		myHandCards.addAll(tableCards);
+		myHandCards.addAll(hand.getCards());
+		
+		Collections.sort(myHandCards, Card.valueComparator);
+		
+		ArrayList<Card> bestHandCards = new ArrayList<>();
+		
+		
+		for(int i=0;i<myHandCards.size()-1;i++)
+		{
+			if(myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+1).getFaceValue())){
+			bestHandCards.add(myHandCards.get(i));
+			bestHandCards.add(myHandCards.get(i+1));
+			myHandCards.remove(i);
+			myHandCards.remove(i);
+			break;
+			}
+		}
+		
+		if(bestHandCards.size()==0){
+			return null;	
+		}
+		
+		for(int i=0;i<myHandCards.size()-1;i++)
+		{
+			if(myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+1).getFaceValue())){
+			bestHandCards.add(myHandCards.get(i));
+			bestHandCards.add(myHandCards.get(i+1));
+			myHandCards.remove(i);
+			myHandCards.remove(i);
+			break;
+			}
+		}
+		
+		if(bestHandCards.size()==2){
+			return null;	
+		}
+		
+		Collections.sort(myHandCards,Card.valueComparator);
+		bestHandCards.add(myHandCards.get(0));
+		
+		Hand myHand = new Hand(bestHandCards);
+		return myHand;
 	}
-
-
 
 	private Hand checkThreeOfAKind(Hand hand) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Card> myHandCards = new ArrayList<>();
+		myHandCards.addAll(tableCards);
+		myHandCards.addAll(hand.getCards());
+		
+		Collections.sort(myHandCards, Card.valueComparator);
+		
+		ArrayList<Card> bestHandCards = new ArrayList<>();
+		
+		
+		for(int i=0;i<myHandCards.size()-2;i++)
+		{
+			if(myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+1).getFaceValue())&&myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+2).getFaceValue())){
+				bestHandCards.add(myHandCards.get(i));
+				bestHandCards.add(myHandCards.get(i+1));
+				bestHandCards.add(myHandCards.get(i+2));
+				myHandCards.remove(i);
+				myHandCards.remove(i);
+				myHandCards.remove(i);
+				break;
+			}
+		}
+		
+		if(bestHandCards.size()==0){
+			return null;	
+		}
+		
+		Collections.sort(myHandCards,Card.valueComparator);
+		myHandCards.remove(3);
+		myHandCards.remove(2);
+		
+		bestHandCards.addAll(myHandCards);
+		
+		Hand myHand = new Hand(bestHandCards);
+		return myHand;
 	}
-
-
 
 	private Hand checkStraight(Hand hand) {
-		// TODO Auto-generated method stub
+		List<Card> handCards = hand.getCards();
+		handCards.addAll(tableCards);
+		List<Card> straight = new ArrayList<>();
+		Collections.sort(handCards,Card.valueComparator);
+		Card.VALUE sequence = Card.VALUE.ACE;
+		straight.add(new Card(Card.SUIT.CLUBS,Card.VALUE.ACE));
+		for (Card c:handCards)
+			if(c.getFaceValue().compareTo(sequence)==-1){
+				straight.add(c);
+				sequence = c.getFaceValue();
+			}
+			else if(c.getFaceValue().compareTo(sequence)<-1) {
+				straight = new ArrayList<>();
+				straight.add(c);
+				sequence = c.getFaceValue();
+			}
+		if (straight.size()>=5)
+			return  new Hand(straight.subList(0,5));
 		return null;
 	}
-
-
 
 	private Hand checkFlush(Hand hand) {
 		// TODO Auto-generated method stub
+		ArrayList<Card> availableCards = new ArrayList<>();
+		availableCards.addAll(tableCards);
+		availableCards.addAll(hand.getCards());
+		
+		Hand availableCardsHand = new Hand(availableCards);
+		
+		Hand diamonds = availableCardsHand.getCardsOfSuit(Card.SUIT.DIAMOND);
+		Hand hearts = availableCardsHand.getCardsOfSuit(Card.SUIT.HEARTS);
+		Hand spades = availableCardsHand.getCardsOfSuit(Card.SUIT.SPADES);
+		Hand clubs = availableCardsHand.getCardsOfSuit(Card.SUIT.CLUBS);
+		
+		if(diamonds.getCards().size()>=5) {
+			Collections.sort(diamonds.getCards(),Card.valueComparator);
+			return new Hand(diamonds.getCards().subList(0,5));
+		}
+		if(hearts.getCards().size()>=5) {
+			Collections.sort(diamonds.getCards(),Card.valueComparator);
+			return new Hand(hearts.getCards().subList(0,5));
+		}
+		if(spades.getCards().size()>=5) {
+			Collections.sort(diamonds.getCards(),Card.valueComparator);
+			return new Hand(spades.getCards().subList(0,5));
+		}
+		if(clubs.getCards().size()>=5) {
+			Collections.sort(diamonds.getCards(),Card.valueComparator);
+			return new Hand(clubs.getCards().subList(0,5));
+		}
 		return null;
 	}
-
-
 
 	private Hand checkFullHouse(Hand hand) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Card> myHandCards = new ArrayList<>();
+		myHandCards.addAll(tableCards);
+		myHandCards.addAll(hand.getCards());
+		
+		Collections.sort(myHandCards, Card.valueComparator);
+		
+		ArrayList<Card> bestHandCards = new ArrayList<>();
+		
+		
+		for(int i=0;i<myHandCards.size()-2;i++)
+		{
+			if(myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+1).getFaceValue())&&myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+2).getFaceValue())){
+			bestHandCards.add(myHandCards.get(i));
+			bestHandCards.add(myHandCards.get(i+1));
+			bestHandCards.add(myHandCards.get(i+2));
+			myHandCards.remove(i);
+			myHandCards.remove(i);
+			myHandCards.remove(i);
+			break;
+			}
+		}
+		
+		if(bestHandCards.size()==0){
+			return null;	
+		}
+		
+		for(int i=0;i<myHandCards.size()-1;i++)
+		{
+			if(myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+1).getFaceValue())){
+			bestHandCards.add(myHandCards.get(i));
+			bestHandCards.add(myHandCards.get(i+1));
+			myHandCards.remove(i);
+			myHandCards.remove(i);
+			break;
+			}
+		}
+		
+		if(bestHandCards.size()==3){
+			return null;
+		}
+		
+		Hand myHand = new Hand(bestHandCards);
+		return myHand;
 	}
-
-
 
 	private Hand checkFourOfAKind(Hand hand) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Card> myHandCards = new ArrayList<>();
+		myHandCards.addAll(tableCards);
+		myHandCards.addAll(hand.getCards());
+		
+		Collections.sort(myHandCards, Card.valueComparator);
+		
+		ArrayList<Card> bestHandCards = new ArrayList<>();
+		
+		
+		for(int i=0;i<myHandCards.size()-3;i++)
+		{
+			if(myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+1).getFaceValue())&&myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+2).getFaceValue())&&myHandCards.get(i).getFaceValue().equals(myHandCards.get(i+3).getFaceValue())){
+				bestHandCards.add(myHandCards.get(i));
+				bestHandCards.add(myHandCards.get(i+1));
+				bestHandCards.add(myHandCards.get(i+2));
+				bestHandCards.add(myHandCards.get(i+3));
+				myHandCards.remove(i);
+				myHandCards.remove(i);
+				myHandCards.remove(i);
+				myHandCards.remove(i);
+				break;
+			}
+		}
+		
+		if(bestHandCards.size()==0){
+			return null;	
+		}
+		
+		Collections.sort(myHandCards,Card.valueComparator);
+		myHandCards.remove(2);
+		myHandCards.remove(1);
+		
+		bestHandCards.addAll(myHandCards);
+		
+		Hand myHand = new Hand(bestHandCards);
+		return myHand;
 	}
-
-
 
 	private Hand checkStraightFlush(Hand hand) {
 		// TODO Auto-generated method stub
-		return null;
+		Hand spadesHand = new Hand();
+		Hand heartsHand = new Hand();
+		Hand diamondsHand = new Hand();
+		Hand clubsHand = new Hand();
+		
+		ArrayList<Card> handList= new ArrayList<>();
+		handList.addAll(tableCards);
+		handList.addAll(hand.getCards());
+		Hand playingHand = new Hand(handList);
+		
+		for(int i=0; i<4; i++){
+			spadesHand = playingHand.getCardsOfSuit(Card.SUIT.SPADES);
+			heartsHand = playingHand.getCardsOfSuit(Card.SUIT.HEARTS);
+			clubsHand = playingHand.getCardsOfSuit(Card.SUIT.CLUBS);
+			diamondsHand = playingHand.getCardsOfSuit(Card.SUIT.DIAMOND);
+		}
+		
+		Hand straightFlushHand = null;
+		ArrayList<Card> returnCards = new ArrayList<>();
+		if(spadesHand.getCards().size() >= 5){
+			Collections.sort(spadesHand.getCards(), Card.valueComparator);
+			straightFlushHand = checkStraight(spadesHand);
+		} else if(clubsHand.getCards().size() >= 5){
+			Collections.sort(clubsHand.getCards(), Card.valueComparator);
+			straightFlushHand = checkStraight(clubsHand);
+		} else if(heartsHand.getCards().size() >= 5){
+			Collections.sort(heartsHand.getCards(), Card.valueComparator);
+			straightFlushHand = checkStraight(heartsHand);
+		} else if(diamondsHand.getCards().size() >= 5){
+			Collections.sort(diamondsHand.getCards(), Card.valueComparator);
+			straightFlushHand = checkStraight(diamondsHand);
+		}
+		
+		return straightFlushHand;
 	}
-
-
 
 	private Hand checkRoyalFlush(Hand hand) {
-		// TODO Auto-generated method stub
-		return null;
+		Hand myHand = checkStraightFlush(hand);
+		if(myHand == null || myHand.getCards().get(0).getFaceValue() != Card.VALUE.ACE){
+			return null;
+		}
+		return myHand;
 	}
-
-
 
 	@Override
 	public int compare(List<Hand> hands) {
 		// TODO Auto-generated method stub
 		ArrayList<PokerHand> bestHand = new ArrayList<>();
-		for(Hand hand : hands)
+		for(Hand hand : hands){
+			System.out.println(getBestHand(hand));
 			bestHand.add(getBestHand(hand));
+		}
 		
 		return 0;
 	}
@@ -169,6 +412,7 @@ public class Poker implements Game{
 	{
 		return tableCards.toString();
 	}
+
 	@Override
 	public void initGame() {
 		standardDeck = new Deck();

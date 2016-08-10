@@ -1,11 +1,21 @@
 package cardgames;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Test {
 	public static void main(String[] args) {
 		Pack deck = new Pack();
 		deck.shuffle();
+
+		
+		ArrayList<Card> cards = new ArrayList<>();
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		
 		
 		Poker pokerGame = new Poker();
 		pokerGame.initGame();
@@ -19,8 +29,8 @@ public class Test {
 		pokerGame.dealCards(hands);
 		pokerGame.compare(hands);
 		
-		System.out.println("Nisarg   : " + h2.getCards());
-		System.out.println("Abhishek : " + h1.getCards());
+		System.out.println("Nisarg   : " + h1.getCards());
+		System.out.println("Abhishek : " + h2.getCards());
 		System.out.println("Ashish   : " + h3.getCards());
 		System.out.println("Table    : " + pokerGame.displayTable());
 		
