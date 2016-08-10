@@ -21,4 +21,12 @@ public class Card {
 	public String toString(){
 		return this.suit.name() + " " + this.faceValue.name();
 	}
+
+	public VALUE getFaceValue() {
+		return faceValue;
+	}
+
+	public SUIT getSuit() {
+		return suit;
+	}
 }

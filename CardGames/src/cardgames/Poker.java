@@ -34,89 +34,96 @@ public class Poker implements Game{
 	}
 	
 	private PokerHand getBestHand(Hand hand){
-		if(checkRoyalFlush(hand)){
+		if(checkRoyalFlush(hand) != null){
 			return PokerHand.ROYAL_FLUSH;
-		} else if(checkStraightFlush(hand)){
+		} else if(checkStraightFlush(hand) != null){
 			return PokerHand.STRAIGHT_FLUSH;
-		} else if(checkFourOfAKind(hand)){
+		} else if(checkFourOfAKind(hand) != null){
 			return PokerHand.FOUR_OF_A_KIND;
-		} else if(checkFullHouse(hand)){
+		} else if(checkFullHouse(hand) != null){
 			return PokerHand.FULL_HOUSE;
-		} else if(checkFlush(hand)){
+		} else if(checkFlush(hand) != null){
 			return PokerHand.FLUSH;
-		} else if(checkStraight(hand)){
+		} else if(checkStraight(hand) != null){
 			return PokerHand.STRAIGHT;
-		} else if(checkThreeOfAKind(hand)){
+		} else if(checkThreeOfAKind(hand) != null){
 			return PokerHand.THREE_OF_A_KIND;
-		} else if(checkTwoPair(hand)){
+		} else if(checkTwoPair(hand) != null){
 			return PokerHand.TWO_PAIR;
-		} else if(checkPair(hand)){
+		} else if(checkPair(hand) != null){
 			return PokerHand.PAIR;
-		} else {
+		} else if (checkHighCard(hand) != null){
 			return PokerHand.HIGH_CARD;
 		}
+		return null;
 	}
 	
-	private boolean checkPair(Hand hand) {
-		// TODO Auto-generated method stub
+	
+	private Hand checkHighCard(Hand hand){
 		
-		return false;
+		return null;
+	}
+	
+	
+	private Hand checkPair(Hand hand) {
+		
+		return null;
 	}
 
 
 
-	private boolean checkTwoPair(Hand hand) {
+	private Hand checkTwoPair(Hand hand) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
 
-	private boolean checkThreeOfAKind(Hand hand) {
+	private Hand checkThreeOfAKind(Hand hand) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
 
-	private boolean checkStraight(Hand hand) {
+	private Hand checkStraight(Hand hand) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
 
-	private boolean checkFlush(Hand hand) {
+	private Hand checkFlush(Hand hand) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
 
-	private boolean checkFullHouse(Hand hand) {
+	private Hand checkFullHouse(Hand hand) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
 
-	private boolean checkFourOfAKind(Hand hand) {
+	private Hand checkFourOfAKind(Hand hand) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
 
-	private boolean checkStraightFlush(Hand hand) {
+	private Hand checkStraightFlush(Hand hand) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
 
-	private boolean checkRoyalFlush(Hand hand) {
+	private Hand checkRoyalFlush(Hand hand) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 

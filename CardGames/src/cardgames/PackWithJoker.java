@@ -1,9 +1,15 @@
 package cardgames;
 
 public class PackWithJoker extends Pack {
+	
 	public PackWithJoker() {
 		super();
-		addJokers(3);
+		addJokers(2);
+	}
+	
+	public PackWithJoker(int count) {
+		super();
+		addJokers(count);
 	}
 	
 	private void addJokers(int count){
