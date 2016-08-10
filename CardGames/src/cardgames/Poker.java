@@ -1,6 +1,8 @@
 package cardgames;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Poker implements Game{
@@ -34,6 +36,9 @@ public class Poker implements Game{
 	}
 	
 	private PokerHand getBestHand(Hand hand){
+		
+		//System.out.println(checkHighCard(hand).getCards());
+		
 		if(checkRoyalFlush(hand) != null){
 			return PokerHand.ROYAL_FLUSH;
 		} else if(checkStraightFlush(hand) != null){
@@ -60,8 +65,21 @@ public class Poker implements Game{
 	
 	
 	private Hand checkHighCard(Hand hand){
+		ArrayList<Card> myHandCards = new ArrayList<>();
+		myHandCards.addAll(tableCards);
+		myHandCards.addAll(hand.getCards());
 		
-		return null;
+		//Hand myHand = new Hand(myHandCards);
+		Collections.sort(myHandCards, Card.valueComparator);
+		
+		ArrayList<Card> bestHandCards = new ArrayList<>();
+		bestHandCards.addAll(myHandCards);
+		
+		bestHandCards.remove(6);
+		bestHandCards.remove(5);
+		
+		Hand myHand = new Hand(bestHandCards);
+		return myHand;
 	}
 	
 	
