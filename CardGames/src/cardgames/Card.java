@@ -15,17 +15,7 @@ public class Card {
 	private VALUE faceValue;
 	private SUIT suit;
 	
-	public static Comparator<Card> valueComparator = new Comparator<Card>() {
-	    public int compare(Card c1, Card c2) {
-	        return c2.getFaceValue().compareTo(c1.getFaceValue()); // use your logic
-	    }
-	};
 	
-	public static Comparator<Card> suitComparator = new Comparator<Card>() {
-	    public int compare(Card c1, Card c2) {
-	        return c2.getSuit().compareTo(c1.getSuit()); // use your logic
-	    }
-	};
 	
 	public Card (SUIT suit, VALUE faceValue){
 		this.faceValue = faceValue;
