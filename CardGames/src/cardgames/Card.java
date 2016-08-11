@@ -25,7 +25,9 @@ public class Card {
 	public String toString(){
 		return this.suit.name() + " " + this.faceValue.name();
 	}
-
+	public int getValue(){
+		return this.getSuit().ordinal()*13+this.getFaceValue().ordinal()+1;
+	}
 	public VALUE getFaceValue() {
 		return faceValue;
 	}

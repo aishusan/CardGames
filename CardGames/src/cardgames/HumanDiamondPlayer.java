@@ -28,6 +28,7 @@ public class HumanDiamondPlayer extends DiamondPlayer {
 
 			Card.VALUE cardValue = VALUE.JOKER;
 			try{
+	
 				cardValue = Card.VALUE.valueOf(cardToPlay);
 			} catch (IllegalArgumentException e){
 				System.out.println(cardToPlay + " not a valid input. Enter again.");

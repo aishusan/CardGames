@@ -17,11 +17,19 @@ public class Deck {
 		cards = new ArrayList<>();
 		for(int i=0;i<n;i++)
 		{
-			Pack p1 = new Pack();
+			Pack p1 = new PackWithJoker();
 			cards.addAll(p1.getCards());
 		}
 	}
-	
+//	public Deck(Pack p,int n) throws CloneNotSupportedException{
+//		cards = new ArrayList<>();
+//		for(int i=0;i<n;i++)
+//		{
+//			Pack p1 =p.clone() ;
+//			cards.addAll(p1.getCards());
+//		}
+//	}
+
 	public void shuffle(){
 		Collections.shuffle(cards);
 	}

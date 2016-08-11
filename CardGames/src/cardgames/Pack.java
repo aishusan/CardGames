@@ -16,7 +16,15 @@ public class Pack {
 			}
 		}
 	}
-	
+//	public Pack Pack(Pack pack) throws CloneNotSupportedException{
+//		Pack p=new Pack();
+//		p.cards=(List<Card>) pack.clone();
+//		return p;
+//		
+//	}
+//	public Pack clone() throws CloneNotSupportedException{
+//		return Pack(this);
+//	}
 	public List<Card> getCards() {
 		return cards;
 	}

@@ -1,6 +1,7 @@
 package cardgames;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Hand {
@@ -23,14 +24,27 @@ public class Hand {
 		this.cards.add(c);
 	}
 	
-	public Hand getCardsOfSuit(Card.SUIT suit) {
+	public List<Card> getCardsOfSuit(Card.SUIT suit) {
 		ArrayList<Card> cardsOfSuit = new ArrayList<>();
 		for (Card c:this.cards)
 			if(c.getSuit().equals(suit))
 				cardsOfSuit.add(c);
-		return new Hand(cardsOfSuit);
+		return cardsOfSuit;
 	}
-	
+	public void sortOnValue(){
+		Collections.sort(cards, new Comparator<Card>() {
+		    public int compare(Card card1,Card card2)  {
+		        return card1.getFaceValue().ordinal()-card2.getFaceValue().ordinal();
+		    }
+		});
+	}
+	public void sortOnSuit(){
+		Collections.sort(cards, new Comparator<Card>() {
+		    public int compare(Card card1,Card card2)  {
+		        return card1.getValue()-card2.getValue();
+		    }
+		});
+	}
 	public void shuffle(){
 		Collections.shuffle(cards);
 	}

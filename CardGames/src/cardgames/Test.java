@@ -2,50 +2,31 @@ package cardgames;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 
 public class Test {
-	public static void main(String[] args) {
-		Pack deck = new Pack();
+	public static void main(String[] args) throws CloneNotSupportedException {
+		
+
+		
+		List<Card> cards = new ArrayList<>();
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
+		Pack pack=new PackWithJoker();
+		Deck deck=new Deck(2);
 		deck.shuffle();
-
-		
-		ArrayList<Card> cards = new ArrayList<>();
-		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
-		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
-		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
-		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
-		cards.add(new Card(Card.SUIT.DIAMOND, Card.VALUE.KING));
-		
-		
-//		Poker pokerGame = new Poker();
-//		pokerGame.initGame();
-//		Hand h1 = new Hand();
-//		Hand h2 = new Hand();
-//		Hand h3 = new Hand();
-//		ArrayList<Hand> hands = new ArrayList<>();
-//		hands.add(h1);
-//		hands.add(h2);
-//		hands.add(h3);
-//		pokerGame.dealCards(hands);
-//		pokerGame.compare(hands);
+		Hand hand=new RummyHand(deck.getNCards(13));
+		cards=hand.getCards();
+		System.out.println(cards.toString());
+		hand.sortOnValue();
+		System.out.println(cards.toString());
+		hand.sortOnSuit();
+		System.out.println(cards.toString());
 //		
-//		System.out.println("Nisarg   : " + h1.getCards());
-//		System.out.println("Abhishek : " + h2.getCards());
-//		System.out.println("Ashish   : " + h3.getCards());
-//		System.out.println("Table    : " + pokerGame.displayTable());
-		
-		Diamonds diamondsGame = new Diamonds();
-		diamondsGame.initGame();
-		diamondsGame.playGame();
-//		Hand h1 = new Hand();
-//		Hand h2 = new Hand();
-//		Hand h3 = new Hand();
-//		ArrayList<Hand> hands = new ArrayList<>();
-//		hands.add(h1);
-//		hands.add(h2);
-//		hands.add(h3);
-//		diamondsGame.dealCards(hands);
-
 		
 		
 	}
