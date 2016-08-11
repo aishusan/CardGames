@@ -19,6 +19,13 @@ public class Hand {
 	public Hand(List<Card> cards){
 		this.cards = cards;
 	}
+	public List<Card> cloneCards(List<Card> cards){
+		List<Card> clonedCards=new ArrayList<Card>();
+		for(int i=0;i<cards.size();i++){
+			clonedCards.add(cards.get(i).clone());
+		}
+		return clonedCards;
+	}
 	
 	public void add(Card c){
 		this.cards.add(c);

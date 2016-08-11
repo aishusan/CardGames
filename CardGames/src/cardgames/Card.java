@@ -21,6 +21,14 @@ public class Card {
 		this.faceValue = faceValue;
 		this.suit = suit;
 	}
+	public Card(Card card){
+		this.faceValue=card.getFaceValue();
+		this.suit=card.getSuit();
+		
+	}
+	public Card clone(){
+		return new Card(this);
+	}
 	
 	public String toString(){
 		return this.suit.name() + " " + this.faceValue.name();
